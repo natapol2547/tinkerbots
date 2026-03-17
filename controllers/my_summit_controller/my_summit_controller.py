@@ -61,7 +61,7 @@ simTime = 0
 
 while robot.step(timestep) != -1:
 
-    moveL(wheels, 0.5)
+    rotate(wheels, 0.5)
     #get camera images and save them
     rgb_camera.saveImage("RGB_camera_outputs/rgb_camera_image_{}.jpg".format(image_count), 100)
     depth_camera.saveImage("Depth_camera_outputs/depth_camera_image_{}.jpg".format(image_count), 100)

@@ -18,8 +18,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.2111087944981483 -0.8538602505368917 0.4757685881167598 5.204151875316329
-  position -2.4779126979417465 2.2069648471079044 1.5643411134927865
+  orientation 0.7023327163787288 0.009277178864021025 -0.711788374066619 3.1631272088473055
+  position 0.07787698504079207 -0.6586344330570573 7.862381834831175
 }
 TexturedBackground {
 }
@@ -203,7 +203,7 @@ Wall {
   size 0.1 0.5 0.2
 }
 Ball {
-  translation 1.64 -1.26 0.042454559999999995
+  translation 1.64 -1.26 0.04991243635466592
   color 0 1 1
   radius 0.05
 }
@@ -1739,6 +1739,9 @@ Robot {
       verticalFieldOfView 0.1
       numberOfLayers 1
       maxRange 4
+      noise 0.01
+    }
+    Compass {
     }
   ]
   name "e-puck"

@@ -19,7 +19,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation 0.7023327163787288 0.009277178864021025 -0.711788374066619 3.1631272088473055
-  position 0.07787698504079207 -0.6586344330570573 7.862381834831175
+  position 0.05902003977729867 -0.6185505067887549 6.449514227494164
 }
 TexturedBackground {
 }
@@ -89,22 +89,10 @@ Wall {
   size 0.1 1.2 0.2
 }
 Wall {
-  translation -0.353768 0.155229 3.14098e-09
-  rotation -9.5898e-09 -1.24977e-08 -1 -1.3089953071795861
-  name "wall(8)"
-  size 0.1 1.2 0.2
-}
-Wall {
   translation 0.807644 -1.07949 -1.91347e-08
   rotation -9.5898e-09 -2.31519e-08 -1 -0.785395307179586
   name "wall(28)"
   size 0.1 0.7 0.2
-}
-Wall {
-  translation -0.799246 0.713838 1.1685e-08
-  rotation 9.58981e-09 -2.31518e-08 1 -0.785395307179586
-  name "wall(17)"
-  size 0.1 1.2 0.2
 }
 Wall {
   translation 0.254114 0.86444 -8.51791e-09
@@ -116,12 +104,6 @@ Wall {
   translation 1.30411 1.41444 -2.86569e-08
   rotation 9.5898e-09 9.58982e-09 1 1.57079
   name "wall(10)"
-  size 0.1 1.2 0.2
-}
-Wall {
-  translation 0.267286 -0.0173249 -8.77068e-09
-  rotation 9.58963e-09 -7.28398e-08 1 -0.2618053071795865
-  name "wall(11)"
   size 0.1 1.2 0.2
 }
 Wall {
@@ -203,7 +185,8 @@ Wall {
   size 0.1 0.5 0.2
 }
 Ball {
-  translation 1.64 -1.26 0.04991243635466592
+  hidden linearVelocity_0 0 0 6.1466618158650765e-06
+  translation 1.64 -1.26 0.04991288092918215
   color 0 1 1
   radius 0.05
 }
@@ -1771,6 +1754,20 @@ Robot {
     ]
   }
   controller "<extern>"
+  supervisor TRUE
   cpuConsumption 1.11
   remoteControl "e-puck_bluetooth"
+}
+DEF BALL Solid {
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.819608 0.478431
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
 }

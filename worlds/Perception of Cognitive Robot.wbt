@@ -208,7 +208,7 @@ Ball {
   radius 0.05
 }
 Robot {
-  translation -1.64 1.69 0
+  translation -1.24 1.69 0
   children [
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -219,7 +219,7 @@ Robot {
         RotationalMotor {
           name "left wheel motor"
           consumptionFactor -0.001
-          maxVelocity 6.28
+          maxVelocity 20
         }
         PositionSensor {
           name "left wheel sensor"
@@ -367,7 +367,7 @@ Robot {
         RotationalMotor {
           name "right wheel motor"
           consumptionFactor -0.001
-          maxVelocity 6.28
+          maxVelocity 20
         }
         PositionSensor {
           name "right wheel sensor"

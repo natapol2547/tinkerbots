@@ -1,5 +1,5 @@
 import numpy as np
-import src.image as image
+from .image import is_image_rgb, gaussian_blur, rgb_to_gray, convolution, SOBEL_KERNEL_X, SOBEL_KERNEL_Y, resize_bilinear
 import matplotlib.pyplot as plt
 
 
@@ -8,7 +8,7 @@ def pad_image(img, kernel_size):
     pad_h = kernel_size//2
     pad_w = kernel_size//2
 
-    if image.is_image_rgb(img):
+    if is_image_rgb(img):
         output = np.zeros((img.shape[0], img.shape[1], img.shape[2]), dtype=img.dtype)
         padded_image = np.pad(img, ((pad_h, pad_h), (pad_w, pad_w), (0, 0)), mode='edge')
         
@@ -35,15 +35,15 @@ def optical_flow_vector_field(img_1, img_2, kernel_size=5, blur_iterations=1, ei
         raise ValueError("Input images must have the same data type.")
     
     if blur_iterations > 0:
-        img_1 = image.gaussian_blur(img_1, iterations=blur_iterations)
-        img_2 = image.gaussian_blur(img_2, iterations=blur_iterations)
+        img_1 = gaussian_blur(img_1, iterations=blur_iterations)
+        img_2 = gaussian_blur(img_2, iterations=blur_iterations)
 
-    if image.is_image_rgb(img_1):
-        img_1 = image.rgb_to_gray(img_1)
-    if image.is_image_rgb(img_2):
-        img_2 = image.rgb_to_gray(img_2)
+    if is_image_rgb(img_1):
+        img_1 = rgb_to_gray(img_1)
+    if is_image_rgb(img_2):
+        img_2 = rgb_to_gray(img_2)
 
-    h, w = img_1.shape
+    h, w = img_1.shape[0], img_1.shape[1]
     optical_flow_vector_field = np.zeros((h, w, 2, 1), dtype=np.float32)
 
     pad_h = kernel_size//2
@@ -52,8 +52,8 @@ def optical_flow_vector_field(img_1, img_2, kernel_size=5, blur_iterations=1, ei
     padded_image_1 = pad_image(img_1, kernel_size)
     padded_image_2 = pad_image(img_2, kernel_size)
     
-    Ix_array = image.convolution(padded_image_1, image.SOBEL_KERNEL_X)
-    Iy_array = image.convolution(padded_image_1, image.SOBEL_KERNEL_Y)
+    Ix_array = convolution(padded_image_1, SOBEL_KERNEL_X)
+    Iy_array = convolution(padded_image_1, SOBEL_KERNEL_Y)
 
     It_array = padded_image_2 - padded_image_1
 
@@ -97,8 +97,8 @@ def optical_flow_magnitude(flow_vector_field):
 
 def optical_flow_pyramid(img_1, img_2, levels=3, initial_kernel_size=3,res=(100,75) ,blur_iterations=1, eig_thresh = 1e-2):
 
-    img_1 = image.resize_bilinear(img_1, res[0], res[1])
-    img_2 = image.resize_bilinear(img_2, res[0], res[1])
+    img_1 = resize_bilinear(img_1, res[0], res[1])
+    img_2 = resize_bilinear(img_2, res[0], res[1])
 
     h, w = img_1.shape[0], img_1.shape[1]
     flow_pyramid = np.zeros((h, w, 2, 1), dtype=np.float32)
